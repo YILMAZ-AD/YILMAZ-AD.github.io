@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>YILMAZ A.D. | Data Engineering</title>
+    <meta name="description" content="Portfolio Data Engineering de YILMAZ A.D. — Pipelines de données, architectures Cloud, Streaming temps réel, IA et bases de données.">
+
+    <style>
+        :root {
+            --bg: #0b0d12;
+            --surface: #121620;
+            --surface-hover: #161b28;
+            --border: #252b38;
+            --border-light: #323a4d;
+            --text: #f1f5f9;
+            --muted: #98a2b3;
+            --accent: #8b9dff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(100% - 40px, 1080px);
+            margin: 0 auto;
+        }
+
+        /* Navigation */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(11, 13, 18, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav {
+            min-height: 74px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 16px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-link {
+            color: var(--muted);
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+        }
+
+        /* Hero / Introduction */
+
+        .hero {
+            padding: 96px 0 80px;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            color: var(--accent);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            max-width: 780px;
+            font-size: clamp(36px, 6.5vw, 60px);
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin-bottom: 24px;
+        }
+
+        h1 span {
+            color: var(--accent);
+        }
+
+        .intro {
+            max-width: 640px;
+            color: var(--muted);
+            font-size: 17px;
+            margin-bottom: 34px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: var(--accent);
+            color: #0b0d12;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 14px;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            opacity: 0.92;
+        }
+
+        .button-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--surface);
+            color: var(--text);
+            border: 1px solid var(--border);
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .button-secondary:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* Projects Section */
+
+        .projects {
+            padding: 60px 0 100px;
+            border-top: 1px solid var(--border);
+        }
+
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 20px;
+            margin-bottom: 36px;
+        }
+
+        .section-heading h2 {
+            font-size: 30px;
+            letter-spacing: -1px;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+            font-size: 14px;
+            margin-top: 4px;
+        }
+
+        .project-count {
+            color: var(--muted);
+            font-family: monospace;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 28px;
+            min-height: 290px;
+            transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .project-card:hover {
+            background: var(--surface-hover);
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .card-meta {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+
+        .project-number {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .project-duration {
+            color: var(--muted);
+            border: 1px solid var(--border);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .project-card h3 {
+            font-size: 19px;
+            line-height: 1.35;
+            margin-bottom: 12px;
+            letter-spacing: -0.3px;
+        }
+
+        .project-description {
+            color: var(--muted);
+            font-size: 14px;
+            margin-bottom: 22px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-top: auto;
+            margin-bottom: 22px;
+        }
+
+        .tag {
+            border: 1px solid var(--border-light);
+            background: rgba(255, 255, 255, 0.02);
+            color: #cbd5e1;
+            border-radius: 5px;
+            padding: 4px 9px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .project-link {
+            width: 100%;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+            color: var(--accent);
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .project-link span {
+            display: inline-block;
+            transition: transform 0.2s ease;
+        }
+
+        .project-card:hover .project-link span {
+            transform: translateX(4px);
+        }
+
+        /* Footer */
+
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 32px 0;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        footer a {
+            transition: color 0.2s ease;
+        }
+
+        footer a:hover {
+            color: var(--text);
+        }
+
+        @media (max-width: 720px) {
+            .hero {
+                padding: 64px 0 56px;
+            }
+
+            h1 {
+                letter-spacing: -1.5px;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-heading {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav class="container">
+            <a class="logo" href="#">YILMAZ A.D<span>.</span></a>
+
+            <div class="nav-links">
+                <a class="nav-link" href="#projets">Projets</a>
+                <a class="nav-link" href="https://github.com/YAD95" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+                <a class="nav-link" href="https://www.linkedin.com/in/daniel-alican-yilmaz-6317b91a1/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero container">
+            <span class="eyebrow">YILMAZ A.D. · Data Engineering</span>
+
+            <h1>
+                Transformer les données en
+                <span>solutions concrètes.</span>
+            </h1>
+
+            <p class="intro">
+                Conception et déploiement de pipelines de données, architectures Cloud et hybrides,
+                traitement de flux en temps réel et intégration de modèles d'intelligence artificielle.
+            </p>
+
+            <div class="hero-actions">
+                <a class="button" href="#projets">
+                    Découvrir mes projets
+                    <span aria-hidden="true">↘</span>
+                </a>
+                <a class="button-secondary" href="https://github.com/YAD95" target="_blank" rel="noopener noreferrer">
+                    GitHub <span aria-hidden="true">↗</span>
+                </a>
+                <a class="button-secondary" href="https://www.linkedin.com/in/daniel-alican-yilmaz-6317b91a1/" target="_blank" rel="noopener noreferrer">
+                    LinkedIn <span aria-hidden="true">↗</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="projects" id="projets">
+            <div class="container">
+
+                <div class="section-heading">
+                    <div>
+                        <h2>Projets réalisés</h2>
+                        <p>Sélection de 11 projets d'ingénierie, d'architecture et d'analyse de données.</p>
+                    </div>
+
+                    <span class="project-count">01 — 11</span>
+                </div>
+
+                <div class="project-grid">
+
+                    <!-- Projet 11 (anciennement 12) -->
+                    <article class="project-card">
+                        <div class="card-meta">
+                            <span class="project-number">PROJET / 11</span>
+                            <span class="project-duration">140 H</span>
+                        </div>
+
+                        <h3>Pipeline Streaming Temps Réel & Calcul Automatisé de KPI</h3>
+
+                        <p class="project-description">
+                            Pipeline automatisé qui calcule en temps réel si un salarié a droit à sa prime sportive. Il capte les données en temps réel, les nettoie et les stocke au format Delta Lake, filtre les fausses déclarations grâce à un contrôle antifraude, calcule automatiquement les primes et jours de repos, puis met à jour un dashboard Power BI sans intervention manuelle.
+
+
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">PySpark</span>
+                            <span class="tag">Redpanda (Kafka)</span>
+                            <span class="tag">Debezium</span>
+                            <span class="tag">Delta Lake</span>
+                            <span class="tag">PostgreSQL</span>
+                            <span class="tag">Docker</span>
+                            <span class="tag">API Slack</span>
+                            <span class="tag">Power BI</span>
+                        </div>
+
+                        <a class="project-link"
+                           href="https://github.com/YAD95/OC-Projet-12-Realtime-Streaming-Pipeline-Architecture"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            Voir le détail sur GitHub <span>↗</span>
+                        </a>
+                    </article>
+
+                    <!-- Projet 10 -->
+                    <article class="project-card">
+                        <div class="card-meta">
+                            <span class="project-number">PROJET / 10</span>
+                            <span class="project-duration">100 H</span>
+                        </div>
+
+                        <h3>Développement d'un Chatbot IA avec Architecture RAG</h3>
+
+                        <p class="project-description">
+                            Chatbot qui recommande des sorties culturelles à Brest sans jamais inventer d’événements : il récupère les vrais événements via l’API OpenAgenda, les indexe dans une base vectorielle FAISS et les donne à Mistral AI (architecture RAG avec LangChain). Sa fiabilité est évaluée automatiquement avec Ragas.
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">LangChain</span>
+                            <span class="tag">Mistral AI</span>
+                            <span class="tag">FAISS</span>
+                            <span class="tag">Ragas</span>
+                            <span class="tag">Pandas</span>
+                            <span class="tag">API REST</span>
+                        </div>
+
+                        <a class="project-link"
+                           href="https://github.com/YAD95/OC-Projet-11-chatbot-rag-events"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            Voir le détail sur GitHub <span>↗</span>
+                        </a>
+                    </article>
+
+                    <!-- Projet 09 -->
+                    <article class="project-card">
+                        <div class="card-meta">
+                            <span class="project-number">PROJET / 09</span>
+                            <span class="project-duration">140 H</span>
+                        </div>
+
+                        <h3>Pipeline ETL Automatisé & Analyse Financière E-commerce</h3>
+
+                        <p class="project-description">
+                            Centralisation des sources ERP et Web sur AWS S3, orchestration d'un workflow "Zero-Touch" avec Kestra, jointures et traitement en mémoire via DuckDB et Python, calcul du CA et détection d'outliers (Z-score).
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">Kestra</span>
+                            <span class="tag">AWS S3</span>
+                            <span class="tag">DuckDB</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">Pandas</span>
+                        </div>
+
+                        <a class="project-link"
+                           href="https://github.com/YAD95/OC-Projet-10-Automated-Revenue-Reporting-Workflow-Kestra-DuckDB-AWS-"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            Voir le détail sur GitHub <span>↗</span>
+                        </a>
+                    </article>
+
+                    <!-- Projet 08 -->
+                    <article class="project-card">
+                        <div class="card-meta">
+                            <span class="project-number">PROJET / 08</span>
+                            <span class="project-duration">120 H</span>
+                        </div>
+
+                        <h3>Architecture Hybride Cloud & Streaming Temps Réel</h3>
+
+                        <p class="project-description">
+                            Modélisation d'une infrastructure hybride (SI on-premise SQL Server / Active Directory vers AWS), ingestion directe de tickets clients via Redpanda, traitement en continu avec PySpark et conteneurisation Docker.
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">PySpark</span>
+                            <span class="tag">Redpanda</span>
+                            <span class="tag">Docker</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">AWS</span>
+                            <span class="tag">Parquet</span>
+                        </div>
+
+                        <a class="project-link"
+                           href="https://github.com/YAD95/OC-Projet-9-Pipeline-Streaming-Spark-Redpanda"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            Voir le détail sur GitHub <span>↗</span>
+                        </a>
+                    </article>
+
+                    <!-- Projet 07 -->
+                    <article class="project-card">
+                        <div class="card-meta">
+                            <span class="project-number">PROJET / 07</span>
+                            <span class="project-duration">100 H</span>
+                        </div>
+
+                        <h3>Architecture & Pipeline Cloud de Données Météorologiques</h3>
+
+                        <p class="project-description">
+                            Ingestion automatisée avec Airbyte, modélisation analytique (faits/dimensions) et tests de qualité avec dbt, conteneurisation Docker et déploiement Serverless sur AWS (ECS Fargate, RDS, ECR, EventBridge).
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">AWS</span>
+                            <span class="tag">dbt</span>
+                            <span class="tag">Airbyte</span>
+                            <span class="tag">Docker</span>
+                            <span class="tag">PostgreSQL</span>
+                            <span class="tag">SQL</span>
+                        </div>
+
+                        <a class="project-link"
+                           href="https://github.com/YAD95/OC-Projet-8-Pipeline-Data-Cloud"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            Voir le détail sur GitHub <span>↗</span>
+                        </a>
+                    </article>
+
+                    <!-- Projet 06 -->
+                    <article class="project-card">
+                        <div class="card-meta">
+                            <span class="project-number">PROJET / 06</span>
+                            <span class="project-duration">100 H</span>
+                        </div>
+
+                        <h3>Conception & Analyse d'une Base NoSQL Distribuée</h3>
+
+                        <p class="project-description">
+                            Restauration de 95 885 documents Airbnb sous MongoDB, haute disponibilité via ReplicaSet (3 nœuds), distribution par Sharding (Paris & Lyon), requêtage Polars/MongoDB et dashboard Power BI via ODBC.
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">MongoDB</span>
+                            <span class="tag">Polars</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">ReplicaSet & Sharding</span>
+                            <span class="tag">Power BI</span>
+                            <span class="tag">ODBC</span>
+                        </div>
+
+                        <a class="project-link"
+                           href="https://github.com/YAD95/OC-Projet-7-Concevoir-Analyser-Bdd-NoSQL"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            Voir le détail sur GitHub <span>↗</span>
+                        </a>
+                    </article>
+
+                    <!-- Projet 05 -->
+                    <article class="project-card">
+                        <div class="card-meta">
+                            <span class="project-number">PROJET / 05</span>
+                            <span class="project-duration">100 H</span>
+                        </div>
+
+                        <h3>Modèle de Prédiction de Consommation Énergétique</h3>
+
+                        <p class="project-description">
+                            Nettoyage ciblé (outliers, data leakage, Spearman), feature engineering, comparaison et optimisation de modèles via GridSearchCV, puis déploiement en API avec BentoML et Docker sur Google Cloud Run[cite: 3].
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Scikit-learn</span>
+                            <span class="tag">BentoML</span>
+                            <span class="tag">Docker</span>
+                            <span class="tag">Google Cloud Run</span>
+                            <span class="tag">Pandas</span>
+                        </div>
+
+                        <a class="project-link"
+                           href="https://github.com/YAD95/OC-Projet-6-Seattle-Energy-Prediction"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            Voir le détail sur GitHub <span>↗</span>
+                        </a>
+                    </article>
+
+                    <!-- Projet 04 -->
+                    <article class="project-card">
+                        <div class="card-meta">
+                            <span class="project-number">PROJET / 04</span>
+                            <span class="project-duration">80 H</span>
+                        </div>
+
+                        <h3>Pipeline ETL, Migration MongoDB & Conteneurisation</h3>
+
+                        <p class="project-description">
+                            Développement d'un pipeline ETL en Python pour migrer des données CSV vers MongoDB, conteneurisation reproductible avec Docker Compose, gestion des accès RBAC, indexation et tests de qualité[cite: 3].
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">MongoDB</span>
+                            <span class="tag">Docker Compose</span>
+                            <span class="tag">Pandas</span>
+                            <span class="tag">ETL</span>
+                        </div>
+
+                        <a class="project-link"
+                           href="https://github.com/YAD95/OC-Projet-5-Migration-MongoDB-Docker"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            Voir le détail sur GitHub <span>↗</span>
+                        </a>
+                    </article>
+
+                    <!-- Projet 03 -->
+                    <article class="project-card">
+                        <div class="card-meta">
+                            <span class="project-number">PROJET / 03</span>
+                            <span class="project-duration">80 H</span>
+                        </div>
+
+                        <h3>Audit de Qualité & Conception d'une Base OLAP</h3>
+
+                        <p class="project-description">
+                            Conception d'un schéma en étoile (tables de faits et dimensions), intégration de données sous SQLite, audit SQL pour diagnostiquer des incohérences de revenus et déploiement d'une solution corrective[cite: 3].
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">SQL</span>
+                            <span class="tag">SQLite</span>
+                            <span class="tag">OLAP</span>
+                            <span class="tag">Schéma en étoile</span>
+                            <span class="tag">Power BI</span>
+                        </div>
+
+                        <a class="project-link"
+                           href="https://github.com/YAD95/OC-Projet-4-Audit-Environnement-Donnees"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            Voir le détail sur GitHub <span>↗</span>
+                        </a>
+                    </article>
+
+                    <!-- Projet 02 -->
+                    <article class="project-card">
+                        <div class="card-meta">
+                            <span class="project-number">PROJET / 02</span>
+                            <span class="project-duration">60 H</span>
+                        </div>
+
+                        <h3>Modélisation Relationnelle & Analyse du Marché Immobilier</h3>
+
+                        <p class="project-description">
+                            Conception d'une base de données relationnelle normalisée (3NF), nettoyage des données brutes (DVF et géographiques), requêtes SQL analytiques et création de vues pour le suivi des tendances régionales[cite: 3].
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">SQL</span>
+                            <span class="tag">SQLite</span>
+                            <span class="tag">Modélisation 3NF</span>
+                            <span class="tag">Analyse de données</span>
+                        </div>
+
+                        <a class="project-link"
+                           href="https://github.com/YAD95/OC-Projet-3-Base-De-Donnees-Immo"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            Voir le détail sur GitHub <span>↗</span>
+                        </a>
+                    </article>
+
+                    <!-- Projet 01 -->
+                    <article class="project-card">
+                        <div class="card-meta">
+                            <span class="project-number">PROJET / 01</span>
+                            <span class="project-duration">60 H</span>
+                        </div>
+
+                        <h3>Analyse Exploratoire des Systèmes Éducatifs Mondiaux</h3>
+
+                        <p class="project-description">
+                            Préparation et nettoyage de jeux de données internationaux, traitement des valeurs manquantes, analyses de corrélation et création d'un modèle de scoring basé sur des indicateurs démographiques et économiques[cite: 3].
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Pandas</span>
+                            <span class="tag">NumPy</span>
+                            <span class="tag">Matplotlib</span>
+                            <span class="tag">Seaborn</span>
+                        </div>
+
+                        <a class="project-link"
+                           href="https://github.com/YAD95/OC-Projet-2-Analyse-Systemes-Educatifs"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            Voir le détail sur GitHub <span>↗</span>
+                        </a>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <p>© 2026 · YILMAZ A.D.</p>
+
+            <div class="footer-links">
+                <a href="https://github.com/YAD95" target="_blank" rel="noopener noreferrer">
+                    GitHub ↗
+                </a>
+                <a href="https://github.com/YAD95" target="_blank" rel="noopener noreferrer">
+                    LinkedIn ↗
+                </a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
