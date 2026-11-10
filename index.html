@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>YILMAZ A.D. | Data Engineering</title>
-    <meta name="description" content="Portfolio Data Engineering de YILMAZ A.D. — Pipelines de données, architectures Cloud, Streaming temps réel, IA et bases de données.">
+    <meta name="description" content="Data Engineering Portfolio of YILMAZ A.D. — Data pipelines, Cloud architectures, Real-time streaming, AI, and databases.">
 
     <style>
         :root {
@@ -37,6 +37,15 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        /* Language visibility rules */
+        html[data-lang="en"] .lang-fr {
+            display: none !important;
+        }
+
+        html[data-lang="fr"] .lang-en {
+            display: none !important;
+        }
+
         a {
             color: inherit;
             text-decoration: none;
@@ -53,18 +62,19 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            background: rgba(11, 13, 18, 0.85);
+            background: rgba(11, 13, 18, 0.88);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
         }
 
         nav {
-            min-height: 74px;
+            min-height: 78px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 20px;
+            padding: 12px 0;
         }
 
         .logo {
@@ -80,7 +90,8 @@
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 24px;
+            gap: 22px;
+            flex-wrap: wrap;
         }
 
         .nav-link {
@@ -92,6 +103,40 @@
 
         .nav-link:hover {
             color: var(--text);
+        }
+
+        /* Eye-catching Language Switcher Button */
+
+        .lang-switch {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(139, 157, 255, 0.14);
+            color: var(--text);
+            border: 2px solid var(--accent);
+            padding: 9px 16px;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 0 18px rgba(139, 157, 255, 0.2);
+            transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .lang-switch:hover {
+            background: var(--accent);
+            color: #0b0d12;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 22px rgba(139, 157, 255, 0.4);
+        }
+
+        .flag-icon {
+            width: 22px;
+            height: 16px;
+            border-radius: 3px;
+            flex-shrink: 0;
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
         }
 
         /* Hero / Introduction */
@@ -247,13 +292,6 @@
             font-weight: 600;
         }
 
-        .project-duration {
-            color: var(--muted);
-            border: 1px solid var(--border);
-            padding: 2px 8px;
-            border-radius: 4px;
-        }
-
         .project-card h3 {
             font-size: 19px;
             line-height: 1.35;
@@ -358,6 +396,16 @@
                 flex-direction: column;
                 align-items: flex-start;
             }
+
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-links {
+                width: 100%;
+                justify-content: space-between;
+            }
         }
     </style>
 </head>
@@ -369,9 +417,40 @@
             <a class="logo" href="#">YILMAZ A.D<span>.</span></a>
 
             <div class="nav-links">
-                <a class="nav-link" href="#projets">Projets</a>
+                <a class="nav-link" href="#projets">
+                    <span class="lang-en">Projects</span>
+                    <span class="lang-fr">Projets</span>
+                </a>
                 <a class="nav-link" href="https://github.com/YILMAZ-AD" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
                 <a class="nav-link" href="https://www.linkedin.com/in/daniel-alican-yilmaz-6317b91a1/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+
+                <!-- Prominent Language Switch Button -->
+                <button id="lang-toggle" class="lang-switch" type="button" onclick="toggleLanguage()" aria-label="Switch language">
+                    <!-- Shown when on the English page -->
+                    <span class="lang-en" style="display: inline-flex; align-items: center; gap: 10px;">
+                        <svg class="flag-icon" viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="1" height="2" x="0" fill="#002395"/>
+                            <rect width="1" height="2" x="1" fill="#ffffff"/>
+                            <rect width="1" height="2" x="2" fill="#ed2939"/>
+                        </svg>
+                        Version française
+                    </span>
+                    <!-- Shown when on the French page -->
+                    <span class="lang-fr" style="display: inline-flex; align-items: center; gap: 10px;">
+                        <svg class="flag-icon" viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg">
+                            <clipPath id="s"><path d="M0,0 v30 h60 v-30 z"/></clipPath>
+                            <clipPath id="t"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath>
+                            <g clip-path="url(#s)">
+                                <path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
+                                <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
+                                <path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#C8102E" stroke-width="4"/>
+                                <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
+                                <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/>
+                            </g>
+                        </svg>
+                        English version
+                    </span>
+                </button>
             </div>
         </nav>
     </header>
@@ -380,19 +459,28 @@
         <section class="hero container">
             <span class="eyebrow">YILMAZ A.D. · Data Engineering</span>
 
-            <h1>
+            <h1 class="lang-en">
+                Turning data into
+                <span>real-world solutions.</span>
+            </h1>
+            <h1 class="lang-fr">
                 Transformer les données en
                 <span>solutions concrètes.</span>
             </h1>
 
-            <p class="intro">
+            <p class="intro lang-en">
+                Designing and deploying data pipelines, Cloud and hybrid architectures,
+                real-time data streaming workflows, and AI models integration.
+            </p>
+            <p class="intro lang-fr">
                 Conception et déploiement de pipelines de données, architectures Cloud et hybrides,
                 traitement de flux en temps réel et intégration de modèles d'intelligence artificielle.
             </p>
 
             <div class="hero-actions">
                 <a class="button" href="#projets">
-                    Découvrir mes projets
+                    <span class="lang-en">Explore my projects</span>
+                    <span class="lang-fr">Découvrir mes projets</span>
                     <span aria-hidden="true">↘</span>
                 </a>
                 <a class="button-secondary" href="https://github.com/YILMAZ-AD" target="_blank" rel="noopener noreferrer">
@@ -409,28 +497,73 @@
 
                 <div class="section-heading">
                     <div>
-                        <h2>Projets réalisés</h2>
-                        <p>Sélection de 11 projets d'ingénierie, d'architecture et d'analyse de données.</p>
+                        <h2 class="lang-en">Completed Projects</h2>
+                        <h2 class="lang-fr">Projets réalisés</h2>
+
+                        <p class="lang-en">A selection of 12 data engineering, architecture, and data analysis projects.</p>
+                        <p class="lang-fr">Sélection de 12 projets d'ingénierie, d'architecture et d'analyse de données.</p>
                     </div>
 
-                    <span class="project-count">01 — 11</span>
+                    <span class="project-count">01 — 12</span>
                 </div>
 
                 <div class="project-grid">
 
-                    <!-- Projet 11 (anciennement 12) -->
+                    <!-- Project 12 -->
                     <article class="project-card">
                         <div class="card-meta">
-                            <span class="project-number">PROJET / 11</span>
-                            <span class="project-duration">140 H</span>
+                            <span class="project-number lang-en">PROJECT / 12</span>
+                            <span class="project-number lang-fr">PROJET / 12</span>
                         </div>
 
-                        <h3>Pipeline Streaming Temps Réel & Calcul Automatisé de KPI</h3>
+                        <h3 class="lang-en">Scaling an AI Chatbot (RAG): From POC to MVP</h3>
+                        <h3 class="lang-fr">Mise à l'échelle d'un Chatbot IA (RAG) : du POC au MVP</h3>
 
-                        <p class="project-description">
+                        <p class="project-description lang-en">
+                            Technical scoping and project management to scale an AI chatbot from a prototype (POC) to a production-ready version (MVP). Gathered user and team needs, prioritized features (backlog, roadmap, workload estimation), managed risks (security, personal data, data quality), and designed a scalable AWS cloud architecture with cost estimation and budget optimization.
+                        </p>
+                        <p class="project-description lang-fr">
+                            Cadrage technique et gestion de projet pour faire passer un chatbot IA du stade de prototype (POC) à une version prête pour la production (MVP). Recueil des besoins, priorisation des fonctionnalités (backlog, planning, estimation des charges), gestion des risques (sécurité, données personnelles, qualité des données) et conception d'une architecture Cloud scalable sur AWS avec estimation et optimisation des coûts.
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">AWS (ECS Fargate, RDS)</span>
+                            <span class="tag">PostgreSQL</span>
+                            <span class="tag">pgvector</span>
+                            <span class="tag">PostGIS</span>
+                            <span class="tag">Terraform</span>
+                            <span class="tag">GitHub Actions</span>
+                            <span class="tag">LangChain</span>
+                            <span class="tag">Mistral AI</span>
+                            <span class="tag">smolagents</span>
+                            <span class="tag">Ragas</span>
+                        </div>
+
+                        <a class="project-link"
+                           href="https://github.com/YILMAZ-AD"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            <b class="lang-en">View details on GitHub</b>
+                            <b class="lang-fr">Voir le détail sur GitHub</b>
+                            <span>↗</span>
+                        </a>
+                    </article>
+
+                    <!-- Project 11 -->
+                    <article class="project-card">
+                        <div class="card-meta">
+                            <span class="project-number lang-en">PROJECT / 11</span>
+                            <span class="project-number lang-fr">PROJET / 11</span>
+                        </div>
+
+                        <h3 class="lang-en">Real-Time Streaming Pipeline & Automated KPI Calculation</h3>
+                        <h3 class="lang-fr">Pipeline Streaming Temps Réel & Calcul Automatisé de KPI</h3>
+
+                        <p class="project-description lang-en">
+                            Automated pipeline that calculates in real time whether an employee qualifies for their sports bonus. It captures live data, cleans and stores it in Delta Lake format, filters out false declarations using an anti-fraud check, automatically computes bonuses and paid leave days, and updates a Power BI dashboard with no manual intervention.
+                        </p>
+                        <p class="project-description lang-fr">
                             Pipeline automatisé qui calcule en temps réel si un salarié a droit à sa prime sportive. Il capte les données en temps réel, les nettoie et les stocke au format Delta Lake, filtre les fausses déclarations grâce à un contrôle antifraude, calcule automatiquement les primes et jours de repos, puis met à jour un dashboard Power BI sans intervention manuelle.
-
-
                         </p>
 
                         <div class="tags">
@@ -440,7 +573,8 @@
                             <span class="tag">Delta Lake</span>
                             <span class="tag">PostgreSQL</span>
                             <span class="tag">Docker</span>
-                            <span class="tag">API Slack</span>
+                            <span class="tag lang-en">Slack API</span>
+                            <span class="tag lang-fr">API Slack</span>
                             <span class="tag">Power BI</span>
                         </div>
 
@@ -448,20 +582,26 @@
                            href="https://github.com/YILMAZ-AD/OC-Projet-12-Realtime-Streaming-Pipeline-Architecture"
                            target="_blank"
                            rel="noopener noreferrer">
-                            Voir le détail sur GitHub <span>↗</span>
+                            <b class="lang-en">View details on GitHub</b>
+                            <b class="lang-fr">Voir le détail sur GitHub</b>
+                            <span>↗</span>
                         </a>
                     </article>
 
-                    <!-- Projet 10 -->
+                    <!-- Project 10 -->
                     <article class="project-card">
                         <div class="card-meta">
-                            <span class="project-number">PROJET / 10</span>
-                            <span class="project-duration">100 H</span>
+                            <span class="project-number lang-en">PROJECT / 10</span>
+                            <span class="project-number lang-fr">PROJET / 10</span>
                         </div>
 
-                        <h3>Développement d'un Chatbot IA avec Architecture RAG</h3>
+                        <h3 class="lang-en">AI Chatbot Development with RAG Architecture</h3>
+                        <h3 class="lang-fr">Développement d'un Chatbot IA avec Architecture RAG</h3>
 
-                        <p class="project-description">
+                        <p class="project-description lang-en">
+                            Chatbot that recommends cultural events in Brest without ever making up fake events: it fetches real events via the OpenAgenda API, indexes them into a FAISS vector database, and feeds them to Mistral AI (RAG architecture with LangChain). Its reliability is automatically evaluated using Ragas.
+                        </p>
+                        <p class="project-description lang-fr">
                             Chatbot qui recommande des sorties culturelles à Brest sans jamais inventer d’événements : il récupère les vrais événements via l’API OpenAgenda, les indexe dans une base vectorielle FAISS et les donne à Mistral AI (architecture RAG avec LangChain). Sa fiabilité est évaluée automatiquement avec Ragas.
                         </p>
 
@@ -472,27 +612,34 @@
                             <span class="tag">FAISS</span>
                             <span class="tag">Ragas</span>
                             <span class="tag">Pandas</span>
-                            <span class="tag">API REST</span>
+                            <span class="tag lang-en">REST API</span>
+                            <span class="tag lang-fr">API REST</span>
                         </div>
 
                         <a class="project-link"
                            href="https://github.com/YILMAZ-AD/OC-Projet-11-chatbot-rag-events"
                            target="_blank"
                            rel="noopener noreferrer">
-                            Voir le détail sur GitHub <span>↗</span>
+                            <b class="lang-en">View details on GitHub</b>
+                            <b class="lang-fr">Voir le détail sur GitHub</b>
+                            <span>↗</span>
                         </a>
                     </article>
 
-                    <!-- Projet 09 -->
+                    <!-- Project 09 -->
                     <article class="project-card">
                         <div class="card-meta">
-                            <span class="project-number">PROJET / 09</span>
-                            <span class="project-duration">140 H</span>
+                            <span class="project-number lang-en">PROJECT / 09</span>
+                            <span class="project-number lang-fr">PROJET / 09</span>
                         </div>
 
-                        <h3>Pipeline ETL Automatisé & Analyse Financière E-commerce</h3>
+                        <h3 class="lang-en">Automated ETL Pipeline & E-commerce Financial Analytics</h3>
+                        <h3 class="lang-fr">Pipeline ETL Automatisé & Analyse Financière E-commerce</h3>
 
-                        <p class="project-description">
+                        <p class="project-description lang-en">
+                            Centralized ERP and web data sources on AWS S3, orchestrated a "Zero-Touch" workflow with Kestra, ran in-memory joins and data processing via DuckDB and Python, calculated revenue, and detected outliers using Z-score.
+                        </p>
+                        <p class="project-description lang-fr">
                             Centralisation des sources ERP et Web sur AWS S3, orchestration d'un workflow "Zero-Touch" avec Kestra, jointures et traitement en mémoire via DuckDB et Python, calcul du CA et détection d'outliers (Z-score).
                         </p>
 
@@ -508,20 +655,26 @@
                            href="https://github.com/YILMAZ-AD/OC-Projet-10-Automated-Revenue-Reporting-Workflow-Kestra-DuckDB-AWS-"
                            target="_blank"
                            rel="noopener noreferrer">
-                            Voir le détail sur GitHub <span>↗</span>
+                            <b class="lang-en">View details on GitHub</b>
+                            <b class="lang-fr">Voir le détail sur GitHub</b>
+                            <span>↗</span>
                         </a>
                     </article>
 
-                    <!-- Projet 08 -->
+                    <!-- Project 08 -->
                     <article class="project-card">
                         <div class="card-meta">
-                            <span class="project-number">PROJET / 08</span>
-                            <span class="project-duration">120 H</span>
+                            <span class="project-number lang-en">PROJECT / 08</span>
+                            <span class="project-number lang-fr">PROJET / 08</span>
                         </div>
 
-                        <h3>Architecture Hybride Cloud & Streaming Temps Réel</h3>
+                        <h3 class="lang-en">Hybrid Cloud Architecture & Real-Time Streaming</h3>
+                        <h3 class="lang-fr">Architecture Hybride Cloud & Streaming Temps Réel</h3>
 
-                        <p class="project-description">
+                        <p class="project-description lang-en">
+                            Modeled a hybrid infrastructure (connecting on-premise SQL Server / Active Directory to AWS), ingested live customer tickets via Redpanda, processed continuous data streams with PySpark, and containerized everything with Docker.
+                        </p>
+                        <p class="project-description lang-fr">
                             Modélisation d'une infrastructure hybride (SI on-premise SQL Server / Active Directory vers AWS), ingestion directe de tickets clients via Redpanda, traitement en continu avec PySpark et conteneurisation Docker.
                         </p>
 
@@ -538,20 +691,26 @@
                            href="https://github.com/YILMAZ-AD/OC-Projet-9-Pipeline-Streaming-Spark-Redpanda"
                            target="_blank"
                            rel="noopener noreferrer">
-                            Voir le détail sur GitHub <span>↗</span>
+                            <b class="lang-en">View details on GitHub</b>
+                            <b class="lang-fr">Voir le détail sur GitHub</b>
+                            <span>↗</span>
                         </a>
                     </article>
 
-                    <!-- Projet 07 -->
+                    <!-- Project 07 -->
                     <article class="project-card">
                         <div class="card-meta">
-                            <span class="project-number">PROJET / 07</span>
-                            <span class="project-duration">100 H</span>
+                            <span class="project-number lang-en">PROJECT / 07</span>
+                            <span class="project-number lang-fr">PROJET / 07</span>
                         </div>
 
-                        <h3>Architecture & Pipeline Cloud de Données Météorologiques</h3>
+                        <h3 class="lang-en">Cloud Data Architecture & Weather Pipeline</h3>
+                        <h3 class="lang-fr">Architecture & Pipeline Cloud de Données Météorologiques</h3>
 
-                        <p class="project-description">
+                        <p class="project-description lang-en">
+                            Automated data ingestion with Airbyte, built analytical models (fact/dimension tables) and data quality tests with dbt, containerized with Docker, and deployed serverless on AWS (ECS Fargate, RDS, ECR, EventBridge).
+                        </p>
+                        <p class="project-description lang-fr">
                             Ingestion automatisée avec Airbyte, modélisation analytique (faits/dimensions) et tests de qualité avec dbt, conteneurisation Docker et déploiement Serverless sur AWS (ECS Fargate, RDS, ECR, EventBridge).
                         </p>
 
@@ -568,20 +727,26 @@
                            href="https://github.com/YILMAZ-AD/OC-Projet-8-Pipeline-Data-Cloud"
                            target="_blank"
                            rel="noopener noreferrer">
-                            Voir le détail sur GitHub <span>↗</span>
+                            <b class="lang-en">View details on GitHub</b>
+                            <b class="lang-fr">Voir le détail sur GitHub</b>
+                            <span>↗</span>
                         </a>
                     </article>
 
-                    <!-- Projet 06 -->
+                    <!-- Project 06 -->
                     <article class="project-card">
                         <div class="card-meta">
-                            <span class="project-number">PROJET / 06</span>
-                            <span class="project-duration">100 H</span>
+                            <span class="project-number lang-en">PROJECT / 06</span>
+                            <span class="project-number lang-fr">PROJET / 06</span>
                         </div>
 
-                        <h3>Conception & Analyse d'une Base NoSQL Distribuée</h3>
+                        <h3 class="lang-en">Distributed NoSQL Database Design & Analytics</h3>
+                        <h3 class="lang-fr">Conception & Analyse d'une Base NoSQL Distribuée</h3>
 
-                        <p class="project-description">
+                        <p class="project-description lang-en">
+                            Restored 95,885 Airbnb documents in MongoDB, set up high availability via a 3-node ReplicaSet, distributed data through Sharding (Paris & Lyon), queried datasets with Polars and MongoDB, and built a Power BI dashboard via ODBC.
+                        </p>
+                        <p class="project-description lang-fr">
                             Restauration de 95 885 documents Airbnb sous MongoDB, haute disponibilité via ReplicaSet (3 nœuds), distribution par Sharding (Paris & Lyon), requêtage Polars/MongoDB et dashboard Power BI via ODBC.
                         </p>
 
@@ -598,21 +763,27 @@
                            href="https://github.com/YILMAZ-AD/OC-Projet-7-Concevoir-Analyser-Bdd-NoSQL"
                            target="_blank"
                            rel="noopener noreferrer">
-                            Voir le détail sur GitHub <span>↗</span>
+                            <b class="lang-en">View details on GitHub</b>
+                            <b class="lang-fr">Voir le détail sur GitHub</b>
+                            <span>↗</span>
                         </a>
                     </article>
 
-                    <!-- Projet 05 -->
+                    <!-- Project 05 -->
                     <article class="project-card">
                         <div class="card-meta">
-                            <span class="project-number">PROJET / 05</span>
-                            <span class="project-duration">100 H</span>
+                            <span class="project-number lang-en">PROJECT / 05</span>
+                            <span class="project-number lang-fr">PROJET / 05</span>
                         </div>
 
-                        <h3>Modèle de Prédiction de Consommation Énergétique</h3>
+                        <h3 class="lang-en">Energy Consumption Prediction Model</h3>
+                        <h3 class="lang-fr">Modèle de Prédiction de Consommation Énergétique</h3>
 
-                        <p class="project-description">
-                            Nettoyage ciblé (outliers, data leakage, Spearman), feature engineering, comparaison et optimisation de modèles via GridSearchCV, puis déploiement en API avec BentoML et Docker sur Google Cloud Run[cite: 3].
+                        <p class="project-description lang-en">
+                            Targeted data cleaning (outliers, data leakage, Spearman correlation), feature engineering, model comparison and optimization via GridSearchCV, then API deployment with BentoML and Docker on Google Cloud Run.
+                        </p>
+                        <p class="project-description lang-fr">
+                            Nettoyage ciblé (outliers, data leakage, Spearman), feature engineering, comparaison et optimisation de modèles via GridSearchCV, puis déploiement en API avec BentoML et Docker sur Google Cloud Run.
                         </p>
 
                         <div class="tags">
@@ -628,21 +799,27 @@
                            href="https://github.com/YILMAZ-AD/OC-Projet-6-Seattle-Energy-Prediction"
                            target="_blank"
                            rel="noopener noreferrer">
-                            Voir le détail sur GitHub <span>↗</span>
+                            <b class="lang-en">View details on GitHub</b>
+                            <b class="lang-fr">Voir le détail sur GitHub</b>
+                            <span>↗</span>
                         </a>
                     </article>
 
-                    <!-- Projet 04 -->
+                    <!-- Project 04 -->
                     <article class="project-card">
                         <div class="card-meta">
-                            <span class="project-number">PROJET / 04</span>
-                            <span class="project-duration">80 H</span>
+                            <span class="project-number lang-en">PROJECT / 04</span>
+                            <span class="project-number lang-fr">PROJET / 04</span>
                         </div>
 
-                        <h3>Pipeline ETL, Migration MongoDB & Conteneurisation</h3>
+                        <h3 class="lang-en">ETL Pipeline, MongoDB Migration & Containerization</h3>
+                        <h3 class="lang-fr">Pipeline ETL, Migration MongoDB & Conteneurisation</h3>
 
-                        <p class="project-description">
-                            Développement d'un pipeline ETL en Python pour migrer des données CSV vers MongoDB, conteneurisation reproductible avec Docker Compose, gestion des accès RBAC, indexation et tests de qualité[cite: 3].
+                        <p class="project-description lang-en">
+                            Built a Python ETL pipeline to migrate CSV data into MongoDB, set up reproducible containerization with Docker Compose, and configured RBAC access control, indexing, and data quality tests.
+                        </p>
+                        <p class="project-description lang-fr">
+                            Développement d'un pipeline ETL en Python pour migrer des données CSV vers MongoDB, conteneurisation reproductible avec Docker Compose, gestion des accès RBAC, indexation et tests de qualité.
                         </p>
 
                         <div class="tags">
@@ -657,28 +834,35 @@
                            href="https://github.com/YILMAZ-AD/OC-Projet-5-Migration-MongoDB-Docker"
                            target="_blank"
                            rel="noopener noreferrer">
-                            Voir le détail sur GitHub <span>↗</span>
+                            <b class="lang-en">View details on GitHub</b>
+                            <b class="lang-fr">Voir le détail sur GitHub</b>
+                            <span>↗</span>
                         </a>
                     </article>
 
-                    <!-- Projet 03 -->
+                    <!-- Project 03 -->
                     <article class="project-card">
                         <div class="card-meta">
-                            <span class="project-number">PROJET / 03</span>
-                            <span class="project-duration">80 H</span>
+                            <span class="project-number lang-en">PROJECT / 03</span>
+                            <span class="project-number lang-fr">PROJET / 03</span>
                         </div>
 
-                        <h3>Audit de Qualité & Conception d'une Base OLAP</h3>
+                        <h3 class="lang-en">Data Quality Audit & OLAP Database Design</h3>
+                        <h3 class="lang-fr">Audit de Qualité & Conception d'une Base OLAP</h3>
 
-                        <p class="project-description">
-                            Conception d'un schéma en étoile (tables de faits et dimensions), intégration de données sous SQLite, audit SQL pour diagnostiquer des incohérences de revenus et déploiement d'une solution corrective[cite: 3].
+                        <p class="project-description lang-en">
+                            Designed a star schema (fact and dimension tables), integrated data into SQLite, ran a SQL audit to diagnose revenue inconsistencies, and deployed a corrective solution.
+                        </p>
+                        <p class="project-description lang-fr">
+                            Conception d'un schéma en étoile (tables de faits et dimensions), intégration de données sous SQLite, audit SQL pour diagnostiquer des incohérences de revenus et déploiement d'une solution corrective.
                         </p>
 
                         <div class="tags">
                             <span class="tag">SQL</span>
                             <span class="tag">SQLite</span>
                             <span class="tag">OLAP</span>
-                            <span class="tag">Schéma en étoile</span>
+                            <span class="tag lang-en">Star Schema</span>
+                            <span class="tag lang-fr">Schéma en étoile</span>
                             <span class="tag">Power BI</span>
                         </div>
 
@@ -686,49 +870,63 @@
                            href="https://github.com/YILMAZ-AD/OC-Projet-4-Audit-Environnement-Donnees"
                            target="_blank"
                            rel="noopener noreferrer">
-                            Voir le détail sur GitHub <span>↗</span>
+                            <b class="lang-en">View details on GitHub</b>
+                            <b class="lang-fr">Voir le détail sur GitHub</b>
+                            <span>↗</span>
                         </a>
                     </article>
 
-                    <!-- Projet 02 -->
+                    <!-- Project 02 -->
                     <article class="project-card">
                         <div class="card-meta">
-                            <span class="project-number">PROJET / 02</span>
-                            <span class="project-duration">60 H</span>
+                            <span class="project-number lang-en">PROJECT / 02</span>
+                            <span class="project-number lang-fr">PROJET / 02</span>
                         </div>
 
-                        <h3>Modélisation Relationnelle & Analyse du Marché Immobilier</h3>
+                        <h3 class="lang-en">Relational Modeling & Real Estate Market Analysis</h3>
+                        <h3 class="lang-fr">Modélisation Relationnelle & Analyse du Marché Immobilier</h3>
 
-                        <p class="project-description">
-                            Conception d'une base de données relationnelle normalisée (3NF), nettoyage des données brutes (DVF et géographiques), requêtes SQL analytiques et création de vues pour le suivi des tendances régionales[cite: 3].
+                        <p class="project-description lang-en">
+                            Designed a normalized relational database (3NF), cleaned raw property sales (DVF) and geographic data, wrote analytical SQL queries, and created views to track regional market trends.
+                        </p>
+                        <p class="project-description lang-fr">
+                            Conception d'une base de données relationnelle normalisée (3NF), nettoyage des données brutes (DVF et géographiques), requêtes SQL analytiques et création de vues pour le suivi des tendances régionales.
                         </p>
 
                         <div class="tags">
                             <span class="tag">SQL</span>
                             <span class="tag">SQLite</span>
-                            <span class="tag">Modélisation 3NF</span>
-                            <span class="tag">Analyse de données</span>
+                            <span class="tag lang-en">3NF Modeling</span>
+                            <span class="tag lang-fr">Modélisation 3NF</span>
+                            <span class="tag lang-en">Data Analysis</span>
+                            <span class="tag lang-fr">Analyse de données</span>
                         </div>
 
                         <a class="project-link"
                            href="https://github.com/YILMAZ-AD/OC-Projet-3-Base-De-Donnees-Immo"
                            target="_blank"
                            rel="noopener noreferrer">
-                            Voir le détail sur GitHub <span>↗</span>
+                            <b class="lang-en">View details on GitHub</b>
+                            <b class="lang-fr">Voir le détail sur GitHub</b>
+                            <span>↗</span>
                         </a>
                     </article>
 
-                    <!-- Projet 01 -->
+                    <!-- Project 01 -->
                     <article class="project-card">
                         <div class="card-meta">
-                            <span class="project-number">PROJET / 01</span>
-                            <span class="project-duration">60 H</span>
+                            <span class="project-number lang-en">PROJECT / 01</span>
+                            <span class="project-number lang-fr">PROJET / 01</span>
                         </div>
 
-                        <h3>Analyse Exploratoire des Systèmes Éducatifs Mondiaux</h3>
+                        <h3 class="lang-en">Exploratory Analysis of Global Education Systems</h3>
+                        <h3 class="lang-fr">Analyse Exploratoire des Systèmes Éducatifs Mondiaux</h3>
 
-                        <p class="project-description">
-                            Préparation et nettoyage de jeux de données internationaux, traitement des valeurs manquantes, analyses de corrélation et création d'un modèle de scoring basé sur des indicateurs démographiques et économiques[cite: 3].
+                        <p class="project-description lang-en">
+                            Prepared and cleaned international datasets, handled missing values, ran correlation analyses, and built a scoring model based on demographic and economic indicators.
+                        </p>
+                        <p class="project-description lang-fr">
+                            Préparation et nettoyage de jeux de données internationaux, traitement des valeurs manquantes, analyses de corrélation et création d'un modèle de scoring basé sur des indicateurs démographiques et économiques.
                         </p>
 
                         <div class="tags">
@@ -743,7 +941,9 @@
                            href="https://github.com/YILMAZ-AD/OC-Projet-2-Analyse-Systemes-Educatifs"
                            target="_blank"
                            rel="noopener noreferrer">
-                            Voir le détail sur GitHub <span>↗</span>
+                            <b class="lang-en">View details on GitHub</b>
+                            <b class="lang-fr">Voir le détail sur GitHub</b>
+                            <span>↗</span>
                         </a>
                     </article>
 
@@ -760,12 +960,22 @@
                 <a href="https://github.com/YILMAZ-AD" target="_blank" rel="noopener noreferrer">
                     GitHub ↗
                 </a>
-                <a href="https://github.com/YILMAZ-AD" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.linkedin.com/in/daniel-alican-yilmaz-6317b91a1/" target="_blank" rel="noopener noreferrer">
                     LinkedIn ↗
                 </a>
             </div>
         </div>
     </footer>
+
+    <script>
+        function toggleLanguage() {
+            const html = document.documentElement;
+            const currentLang = html.getAttribute('data-lang');
+            const nextLang = currentLang === 'en' ? 'fr' : 'en';
+            html.setAttribute('data-lang', nextLang);
+            html.setAttribute('lang', nextLang);
+        }
+    </script>
 
 </body>
 </html>
